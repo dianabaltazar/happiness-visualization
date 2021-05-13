@@ -12,10 +12,10 @@ Which have been the most significant variables that had a major impact on school
 - The lack of response to a vaccine policy caused strict closing measures in the country.
 
 ## 3. Variables to consider and links to databases:
-Global monitoring on school closures (VD),  jan 2020 - may 2021
+- Global monitoring on school closures (VD),  jan 2020 - may 2021
 https://ourworldindata.org/covid-school-workplace-closures
-COVID-19 confirmed cases, vaccinations, hospital facilities, GDP and median age (VI), jan 2020 - may 2021
+- COVID-19 confirmed cases, vaccinations, hospital facilities, GDP and median age (VI), jan 2020 - may 2021
 https://ourworldindata.org/covid-vaccinations
-Distance from China to that country in kilometers
+- Distance from China to that country in kilometers
 http://ksgleditsch.com/data-5.html
 
