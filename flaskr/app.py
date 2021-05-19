@@ -1,4 +1,5 @@
 # Import Dependencies
+
 import pandas as pd 
 import numpy as np
 
@@ -12,8 +13,10 @@ from flask import Flask, jsonify, render_template
 app = Flask(__name__)
 
 # Create the connection engine
-connection_string = f'vpiijrpdtosgpt:{PostgresK}@ec2-54-166-167-192.compute-1.amazonaws.com:5432/d1j88kvbcshh7l'
-engine = create_engine(f'postgresql://{connection_string}')
+connection_string = "vpiijrpdtosgpt:"+PostgresK+"@ec2-54-166-167-192.compute-1.amazonaws.com:5432/d1j88kvbcshh7l"
+
+
+engine = create_engine("postgresql://"+connection_string)
 
 engine.table_names()
 
