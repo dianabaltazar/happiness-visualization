@@ -13,7 +13,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Create the connection engine
-connection_string = "vpiijrpdtosgpt:"+PostgresK+"@ec2-54-166-167-192.compute-1.amazonaws.com:5432/d1j88kvbcshh7l"
+connection_string = "ympsazqytxgdyd:"+PostgresK+"@ec2-54-152-185-191.compute-1.amazonaws.com:5432/d9pes28e80ohoe"
 
 #engine = create_engine("postgres://"+connection_string)
 #engine.table_names()
