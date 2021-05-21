@@ -20,16 +20,24 @@ connection_string = "ympsazqytxgdyd:"+PostgresK+"@ec2-54-152-185-191.compute-1.a
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://"+connection_string
 data = SQLAlchemy(app)
 
-schools = data.Table('schoolclosuresh', data.metadata, autoload= True, autoload_with= data.engine)
-covid = data.Table('coviddatah', data.metadata, autoload= True, autoload_with= data.engine)
+# schools = data.Table('schoolclosuresh', data.metadata, autoload= True, autoload_with= data.engine)
+# covid = data.Table('coviddatah', data.metadata, autoload= True, autoload_with= data.engine)
 
 
 
 @app.route('/')
 def index():
-    
+    schools = pd.read_sql_table('schoolclosuresh',"postgres://"+connection_string)
+    covid = pd.read_sql_table('coviddatah',"postgres://"+connection_string)
+
+    merged = schools.merge(covid, how='inner')
+    # df_join = pd.merge(filtered, filt_school, left_on = “iso_code”, right_on = “iso_code”, how=“left”)
+    schoolsJSON = merged.iloc[0:5,:].to_json(orient="records")
+    print(schoolsJSON)
+    # for i in bla:
+    #     print(i)
     """Return the dashboard homepage"""
-    return render_template('index.html')
+    return schoolsJSON 
 
 if __name__ == "__main__":
     app.run()
