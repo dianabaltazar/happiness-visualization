@@ -29,10 +29,10 @@ covid = data.Table('coviddatah', data.metadata,
 Session = sessionmaker(bind=data.engine)
 
 
-# @app.route('/')
-# def index():
-#     """Return the dashboard homepage"""
-#     return render_template('index.html')
+@app.route('/')
+def index():
+    """Return the dashboard homepage"""
+    return render_template('index.html')
 
 
 @app.route('/json-data')
