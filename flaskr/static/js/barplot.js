@@ -7,8 +7,8 @@
         var selection = d3.select("#panel-body-map");
         var parseDate = d3.timeParse("%m-%d-%Y");
         let dates = Array.from(new Set(data.map(d=>d.date)))
-        let locations = new Set(data.map(d => d.location));
         let foo = []
+<<<<<<< HEAD
         let n = 12
 
         dates.forEach( obs => {
@@ -55,16 +55,25 @@
 
 
       // }).catch(function(error) {
-      //   console.log(error);
+      //   console.log(error);      
 
-        // function rank(value) {
-        //     const data = Array.from(locations, name => ({name, value: total_cases(location)}));
-        //     data.sort((a, b) => d3.descending(a.value, b.value));
-        //     for (let i = 0; i < data.length; ++i) data[i].rank = Math.min(n, i);
-        //     return data;
-        //   }
-          
-        //   rank(name => datevalues[0][1].get(name))
+        function rank(total_cases) {
+            let data1 = Array.from(locations, location => ({location, total_cases: total_cases(location)}));
+            return data1;
+
+        //     var arr = [79, 5, 18, 5, 32, 1, 16, 1, 82, 13];
+        //     var sorted = arr.slice().sort(function(a,b){return b-a})
+        //     var ranks = arr.map(function(v){ return sorted.indexOf(v)+1 });
+        //     console.log(ranks);
+
+        //     let data1 = Array.from(locations, x => ({x, y: y(location)}));
+        //     data1.sort((a, b) => d3.descending(a.y, b.y));
+        //     for (let i = 0; i < data1.length; ++i) data1[i].rank = Math.min(n, i);
+        //     return data1;
+        }
+        
+        console.log(rank(location => foo[0][1].get(location)))
+
 
         //   rank(name => datevalues[0][1].get(location))
 
