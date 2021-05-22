@@ -1,23 +1,25 @@
 
-    var svg = d3.select("#panel-body-map")
-        .append("svg");
-    
-    d3.json('/json-data').then(function(response) {
+    // var svg = d3.select("#panel-body-map")
+    //     .append("svg");
+    // d3 = require("d3@6")
 
+    d3.json('/json-data').then(function(data) {
+        var selection = d3.select("#panel-body-map");
         //locations = new Set(data.map(d => d.locations))
 
-        var locations = response['location'];
+        locations = new Set(data.map(d => d.location));
+        // var locations = response['location'];
         
-        console.log(locations)
-        //  console.log(locations)
+
         // var date = response[0]['date'];
         // var total_cases = response[0]['total_cases'];
-
         // locations = new Set(data.map(d => d.countries))
         
         // datevalues = Array.from(d3.rollup(data, ([d]) => d.total_cases, d => +d.date, d => d.country))
-        // .map(([date, data]) => [new Date(date), data])
-        // .sort(([a], [b]) => d3.ascending(a, b));
+        //     .map(([date, data]) => [new Date(date), data])
+        //     .sort(([a], [b]) => d3.ascending(a, b));
+
+        console.log(locations)
 
         // function rank(value) {
         //     const data = Array.from(locations, name => ({name, value: total_cases(location)}));
