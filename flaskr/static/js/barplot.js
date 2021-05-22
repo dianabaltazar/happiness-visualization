@@ -9,21 +9,53 @@
         let dates = Array.from(new Set(data.map(d=>d.date)))
         let locations = new Set(data.map(d => d.location));
         let foo = []
-        dates
-          .forEach(date => {
-            let bar = new Map()
-            let obj = {}
-            data
-              .filter(d => d.date == date)
-              .forEach(d => {
-                bar.set(d.location, d.total_cases)
-              })
-            obj[date] = bar
-            foo.push(obj)
-          })
+        let n = 12
+
+        dates.forEach( obs => {
+          let subFoo = []
+          subFoo.push(obs)
+          let bar = new Map()
+          data
+            .filter(d => d.date == obs)
+            .forEach(d => {
+              bar.set(d.location, d.total_cases)
+              //subFoo.push(bar)
+            })
+          subFoo.push(bar)
+          foo.push(subFoo)
+        })
         console.log(foo)
-      }).catch(function(error) {
-        console.log(error);
+
+        function rank(value) {
+          let data = Array.from(locations, locName => ({locName, value: value(locName)}));
+          data.sort((a, b) => d3.descending(a.value, b.value));
+          for (let i = 0; i < data.length; ++i) data[i].rank = Math.min(n, i);
+          return data;
+        }
+
+        rankedLoc = rank(location => foo[0][1].get(location))
+        console.log(rankedLoc)
+        // dates
+        //   .forEach(date => {
+        //     let bar = new Map()
+        //     let obj = {}
+        //     data
+        //       .filter(d => d.date == date)
+        //       .forEach(d => {
+        //         bar.set(d.location, d.total_cases)
+        //       })
+        //     obj[date] = bar
+        //     foo.push(obj)
+        //   })
+        
+
+        // foo.forEach(d => console.log(d.entries))
+
+        
+
+
+      // }).catch(function(error) {
+      //   console.log(error);
 
         // function rank(value) {
         //     const data = Array.from(locations, name => ({name, value: total_cases(location)}));
