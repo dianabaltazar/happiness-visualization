@@ -36,7 +36,6 @@ def index():
 @app.route('/json-data')
 def jsondata():
     session = Session()
-
     cols1 = covid.columns
     results = session.query(cols1.date, cols1.iso_code, cols1.continent,
                             cols1.location, cols1.total_cases, cols1.school_closures).all()
