@@ -6,19 +6,24 @@
     d3.json('/json-data').then(function(data) {
         var selection = d3.select("#panel-body-map");
         var parseDate = d3.timeParse("%m-%d-%Y");
-   
-        // data.date = parseDate(data.date);
-
-        // console.log(data[0])
-        //locations = new Set(data.map(d => d.locations))
-
-        locations = new Set(data.map(d => d.location));
-
-        datevalues = Array.from(d3.rollup(data, ([d]) => d.total_cases, d => +d.date, d => d.location))
-            .map(([date, data]) => [parseDate(date), data])
-            .sort(([a], [b]) => d3.ascending(a, b));
-        
-        console.log(datevalues) 
+        let dates = Array.from(new Set(data.map(d=>d.date)))
+        let locations = new Set(data.map(d => d.location));
+        let foo = []
+        dates
+          .forEach(date => {
+            let bar = new Map()
+            let obj = {}
+            data
+              .filter(d => d.date == date)
+              .forEach(d => {
+                bar.set(d.location, d.total_cases)
+              })
+            obj[date] = bar
+            foo.push(obj)
+          })
+        console.log(foo)
+      }).catch(function(error) {
+        console.log(error);
 
         // function rank(value) {
         //     const data = Array.from(locations, name => ({name, value: total_cases(location)}));
@@ -54,5 +59,3 @@
         // next = new Map(nameframes.flatMap(([, data]) => d3.pairs(data)))
 
     });
-
-
