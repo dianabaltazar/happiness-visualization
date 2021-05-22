@@ -5,6 +5,7 @@ import numpy as np
 from config import PostgresK
 import psycopg2
 
+
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
