@@ -15,7 +15,7 @@
 
         dates.forEach( obs => {
           let subFoo = []
-          subFoo.push(parseDate(obs))
+          subFoo.push(new Date(obs))
           let bar = new Map()
           data
             .filter(d => d.date == obs)
@@ -60,7 +60,11 @@
           return keyframes;
         }
 
-        console.log(keyframes())
+        nameframes = d3.groups(keyframes().flatMap(([, data]) => data), d => d.locName)
+        console.log(nameframes)
+
+
+        /*/console.log(keyframes())
         
         // dates
         //   .forEach(date => {
@@ -85,12 +89,7 @@
       //   console.log(error);
 
 
-        
-
-        function rank(total_cases) {
-            let data1 = Array.from(locations, location => ({location, total_cases: total_cases(location)}));
-            return data1;
-
+      
         //     var arr = [79, 5, 18, 5, 32, 1, 16, 1, 82, 13];
         //     var sorted = arr.slice().sort(function(a,b){return b-a})
         //     var ranks = arr.map(function(v){ return sorted.indexOf(v)+1 });
@@ -100,7 +99,7 @@
         //     data1.sort((a, b) => d3.descending(a.y, b.y));
         //     for (let i = 0; i < data1.length; ++i) data1[i].rank = Math.min(n, i);
         //     return data1;
-        }
+        
         
 
 
