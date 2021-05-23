@@ -7,13 +7,15 @@
         var selection = d3.select("#panel-body-map");
         var parseDate = d3.timeParse("%m-%d-%Y");
         let dates = Array.from(new Set(data.map(d=>d.date)))
+        let locations = new Set(data.map(d => d.location));
         let foo = []
-<<<<<<< HEAD
+        let k = 10
+
         let n = 12
 
         dates.forEach( obs => {
           let subFoo = []
-          subFoo.push(obs)
+          subFoo.push(parseDate(obs))
           let bar = new Map()
           data
             .filter(d => d.date == obs)
@@ -24,7 +26,7 @@
           subFoo.push(bar)
           foo.push(subFoo)
         })
-        console.log(foo)
+       
 
         function rank(value) {
           let data = Array.from(locations, locName => ({locName, value: value(locName)}));
@@ -33,8 +35,33 @@
           return data;
         }
 
+        // console.log(foo)
+
         rankedLoc = rank(location => foo[0][1].get(location))
-        console.log(rankedLoc)
+        // console.log(rankedLoc)
+
+        function keyframes() {
+          const keyframes = [];
+          let ka, a, kb, b;
+          for ([[ka, a], [kb, b]] of d3.pairs(foo)) {
+            // console.log(ka)
+            // console.log(a)
+            // console.log(kb)
+            // console.log(b)
+            for (let i = 0; i < k; ++i) {
+              const t = i / k;
+              keyframes.push([
+                new Date(ka * (1 - t) + kb * t),
+                rank(name => (a.get(name) || 0) * (1 - t) + (b.get(name) || 0) * t)
+              ]);
+            }
+          }
+          keyframes.push([new Date(kb), rank(name => b.get(name) || 0)]);
+          return keyframes;
+        }
+
+        console.log(keyframes())
+        
         // dates
         //   .forEach(date => {
         //     let bar = new Map()
@@ -55,7 +82,10 @@
 
 
       // }).catch(function(error) {
-      //   console.log(error);      
+      //   console.log(error);
+
+
+        
 
         function rank(total_cases) {
             let data1 = Array.from(locations, location => ({location, total_cases: total_cases(location)}));
@@ -72,7 +102,6 @@
         //     return data1;
         }
         
-        console.log(rank(location => foo[0][1].get(location)))
 
 
         //   rank(name => datevalues[0][1].get(location))
