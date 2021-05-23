@@ -4,7 +4,7 @@
     // d3 = require("d3@6")
 
     d3.json('/json-data').then(function(data) {
-        d3.select(".map");
+        d3.select("#map");
 
         let dates = Array.from(new Set(data.map(d=>d.date)))
         let locations = new Set(data.map(d => d.location));
