@@ -2,13 +2,15 @@
     // var svg = d3.select("#panel-body-map")
     //     .append("svg");
     // d3 = require("d3@6")
-
+   
     d3.json('/json-data').then(function(data) {
+      width = 200;
+      height = 200;
        d3.select("body").d3.select(".map");
         // if (!svgArea.empty()) {
         //   svgArea.remove();
         // }
-
+        
         let dates = Array.from(new Set(data.map(d=>d.date)))
         let locations = new Set(data.map(d => d.location));
         let foo = []
@@ -207,13 +209,13 @@
 
         function mychart () {
           replay;
-          const svg = d3.create("svg")
+          let svg = d3.select("#race-chart").append("svg")
               .attr("viewBox", [0, 0, width, height]);
-        
-          const updateBars = bars(svg);
-          const updateAxis = axis(svg);
-          const updateLabels = labels(svg);
-          const updateTicker = ticker(svg);
+          console.log(width)
+          let updateBars = bars(svg);
+          let updateAxis = axis(svg);
+          let updateLabels = labels(svg);
+          let updateTicker = ticker(svg);
         
           yield svg.node();
         
