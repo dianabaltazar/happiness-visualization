@@ -4,13 +4,46 @@
     // d3 = require("d3@6")
 
     d3.json('/json-data').then(function(data) {
-        var selection = d3.select("#panel-body-map");
+        
 
         let dates = Array.from(new Set(data.map(d=>d.date)))
         let locations = new Set(data.map(d => d.location));
         let foo = []
         let k = 10
         let n = 12
+
+        //////////////////////
+        console.log("starting barchart")
+        const svg = d3.select(".panel-body-map")
+        .append("svg")
+        .attr("viewBox", [0, 0, width, height]);
+  
+        const updateBars = bars(svg);
+        const updateAxis = axis(svg);
+        const updateLabels = labels(svg);
+        const updateTicker = ticker(svg);
+      
+        yield svg.node();
+      
+        for (const keyframe of keyframes) {
+          const transition = svg.transition()
+              .duration(duration)
+              .ease(d3.easeLinear);
+      
+          // Extract the top bar’s value.
+          x.domain([0, keyframe[1][0].value]);
+      
+          updateAxis(keyframe, transition);
+          updateBars(keyframe, transition);
+          updateLabels(keyframe, transition);
+          updateTicker(keyframe, transition);
+      
+          invalidation.then(() => svg.interrupt());
+          await transition.end();
+        }
+
+
+        ///////////////
 
         dates.forEach( obs => {
           let subFoo = []
@@ -201,39 +234,12 @@
 
 
         //////// FINAL CHART 
+        
+         
+        
 
-
-        function chart() {
-          replay;
-        
-          const svg = d3.create("svg")
-              .attr("viewBox", [0, 0, width, height]);
-        
-          const updateBars = bars(svg);
-          const updateAxis = axis(svg);
-          const updateLabels = labels(svg);
-          const updateTicker = ticker(svg);
-        
-          yield svg.node();
-        
-          for (const keyframe of keyframes) {
-            const transition = svg.transition()
-                .duration(duration)
-                .ease(d3.easeLinear);
-        
-            // Extract the top bar’s value.
-            x.domain([0, keyframe[1][0].value]);
-        
-            updateAxis(keyframe, transition);
-            updateBars(keyframe, transition);
-            updateLabels(keyframe, transition);
-            updateTicker(keyframe, transition);
-        
-            invalidation.then(() => svg.interrupt());
-            await transition.end();
-          }
-        }
+        // chart()
 
     });
 
-    chart()
+  
