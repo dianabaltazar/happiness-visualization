@@ -4,7 +4,10 @@
     // d3 = require("d3@6")
 
     d3.json('/json-data').then(function(data) {
-        d3.select("#map");
+       d3.select("body").d3.select(".map");
+        // if (!svgArea.empty()) {
+        //   svgArea.remove();
+        // }
 
         let dates = Array.from(new Set(data.map(d=>d.date)))
         let locations = new Set(data.map(d => d.location));
@@ -202,10 +205,8 @@
 
         //////// FINAL CHART 
 
-
-        function chart() {
+        function mychart () {
           replay;
-        
           const svg = d3.create("svg")
               .attr("viewBox", [0, 0, width, height]);
         
@@ -232,8 +233,9 @@
             invalidation.then(() => svg.interrupt());
             await transition.end();
           }
-        }
+
+        };
+        
 
     });
-
-    chart()
+    return mychart;
