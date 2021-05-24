@@ -209,8 +209,8 @@
 
         function mychart () {
           replay;
-          let svg = d3.select("#race-chart").append("svg")
-              .attr("viewBox", [0, 0, width, height]);
+          let svg = d3.select("#race-chart").create("svg")
+              // .attr("viewBox", [0, 0, width, height]);
           console.log(width)
           let updateBars = bars(svg);
           let updateAxis = axis(svg);

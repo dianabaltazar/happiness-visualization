@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 
-from config import PostgresK
+# from config import PostgresK
 import psycopg2
 
 
@@ -16,7 +16,7 @@ from sqlalchemy.orm import sessionmaker
 app = Flask(__name__)
 
 # Create the connection engine
-connection_string = "ympsazqytxgdyd:"+PostgresK + \
+connection_string = "ympsazqytxgdyd:"+"84f61aeda6880d7b357752a62d790ff878b9b80328a5e86c9436dae6fda1439f" + \
     "@ec2-54-152-185-191.compute-1.amazonaws.com:5432/d9pes28e80ohoe"
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://"+connection_string
