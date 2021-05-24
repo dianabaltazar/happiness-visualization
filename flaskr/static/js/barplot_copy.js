@@ -16,10 +16,10 @@
     let height = svgHeight - margin.top - margin.bottom;
 
     let svg = d3
-  .select("#race-chart")
-  .append("svg")
-  .attr("width", svgWidth)
-  .attr("height", svgHeight);
+      .select("#race-chart")
+      .append("svg")
+      .attr("width", svgWidth)
+      .attr("height", svgHeight);
 
   let chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
@@ -419,8 +419,8 @@
       cases = SchoolData.map(d => d.total_cases)
       function Search() {
       
-      
-      
+        chartGroup.html("")
+                  
       if (selector.property("value") === "mar20"){
         selectedMonth = mar20Top;
       } else if (selector.property("value") === "apr20") {
@@ -467,27 +467,33 @@
     let bottomAxis = d3.axisBottom(xLinearScale).ticks(10);
     let leftAxis = d3.axisLeft(yBandScale);
 
+    chartGroup.exit().remove() 
+
     chartGroup.append("g")
       .call(leftAxis);
     
       chartGroup.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(bottomAxis);
-
-       chartGroup.selectAll(".bar")
-        .data(selectedMonth)
-        .enter()
-        .append("rect")
-        .attr("class", "bar")
-        .attr("y", d => yBandScale(d.country))
-        .attr("x", 1)
-        .attr("height", yBandScale.bandwidth())
-        .attr("width", d => xLinearScale(d.cases))
-        .style("fill", "rgb(12,240,233)")
-
-
+     
+       return chartGroup.selectAll(".bar")
+              .data(selectedMonth)
+              .enter()
+              .append("rect")
+              .attr("class", "bar")
+              .attr("y", d => yBandScale(d.country))
+              .attr("x", 1)
+              .attr("height", yBandScale.bandwidth())
+              .attr("width", d => xLinearScale(d.cases))
+              .style("fill", "rgb(12,240,233)")
+          
     }
-  selector.on("change", Search)
+    
+    d3.select("#monthSelect").on("change",Search)
+    //selector.on('change',Search)
+
   }).catch(function(error) {
       console.log(error);
     })
+
+  
