@@ -15,7 +15,7 @@
     let width = svgWidth - margin.left - margin.right;
     let height = svgHeight - margin.top - margin.bottom;
 
-    let svg = d3
+    let svg = d3git 
       .select("#race-chart")
       .append("svg")
       .attr("width", svgWidth)
