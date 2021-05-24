@@ -133,18 +133,36 @@
         </div>
         <!-- Today status end -->
         <div class="row">
-
+          
           <div class="col-lg-9 col-md-12">
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h2><strong>TOP 10 CASES PER COUNTRY OVER TIME</strong></h2>
-              
+                <select onchange="Search()"class="selector" aria-label="Default select example">
+                  <option selected>Choose a Month</option>
+                  <option value="mar20">March 2020</option>
+                  <option value="apr20">April 2020</option>
+                  <option value="may20">May 2020</option>
+                  <option value="jun20">June 2020</option>
+                  <option value="jul20">July 2020</option>
+                  <option value="aug20">August 2020</option>
+                  <option value="sep20">September 2020</option>
+                  <option value="oct20">October 2020</option>
+                  <option value="nov20">November 2020</option>
+                  <option value="dec20">December 2020</option>
+                  <option value="jan21">January 2021</option>
+                  <option value="feb21">February 2021</option>
+                  <option value="mar21">March 2021</option>
+                  <option value="apr21">April 2021</option>
+                </select>
               </div>
+            
               <div class="panel-body" id="race-chart">
               </div>
             </div>
           </div>
           </div>
+          
           <!--/col-->
         </div>
         <!-- statics end -->

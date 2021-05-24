@@ -414,22 +414,54 @@
           apr21Top.push(dict);
         }
       });
-
-      
+      selector = d3.select(".selector")
+      selectedMonth = "";
       cases = SchoolData.map(d => d.total_cases)
+      function Search() {
       
+      
+      
+      if (selector.property("value") === "mar20"){
+        selectedMonth = mar20Top;
+      } else if (selector.property("value") === "apr20") {
+        selectedMonth = apr20Top;
+      } else if (selector.property("value") === "may20") {
+        selectedMonth = may20Top;
+      } else if (selector.property("value") === "jun20") {
+        selectedMonth = jun20Top;
+      } else if (selector.property("value") === "jul20") {
+        selectedMonth = jul20Top;
+      } else if (selector.property("value") === "aug20") {
+        selectedMonth = aug20Top;
+      } else if (selector.property("value") === "sep20") {
+        selectedMonth = sep20Top;
+      } else if (selector.property("value") === "oct20") {
+        selectedMonth = oct20Top;
+      } else if (selector.property("value") === "nov20") {
+        selectedMonth = nov20Top;
+      } else if (selector.property("value") === "dec20") {
+        selectedMonth = dec20Top;
+      } else if (selector.property("value") === "jan21") {
+        selectedMonth = jan21Top;
+      } else if (selector.property("value") === "feb21") {
+        selectedMonth = feb21Top;
+      } else if (selector.property("value") === "mar21") {
+        selectedMonth = mar21Top;
+      } else if (selector.property("value") === "apr21") {
+        selectedMonth = apr21Top;
+      }
 
       // console.log(apr21.slice(0,10));
       // locations = SchoolData.map(d => d.location)
       // top10_locations = SchoolData.map
 
       let yBandScale = d3.scaleBand()
-    .domain(apr21Top.map(d => d.country))
+    .domain(selectedMonth.map(d => d.country))
     .range([height, 0])
     .padding(0.1);
 
     let xLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(apr21Top, d => d.cases)])
+    .domain([0, d3.max(selectedMonth, d => d.cases)])
     .range([0, width])
       
     let bottomAxis = d3.axisBottom(xLinearScale).ticks(10);
@@ -443,7 +475,7 @@
         .call(bottomAxis);
 
        chartGroup.selectAll(".bar")
-        .data(apr21Top)
+        .data(selectedMonth)
         .enter()
         .append("rect")
         .attr("class", "bar")
@@ -452,6 +484,10 @@
         .attr("height", yBandScale.bandwidth())
         .attr("width", d => xLinearScale(d.cases))
         .style("fill", "rgb(12,240,233)")
-    }).catch(function(error) {
+
+
+    }
+  selector.on("change", Search)
+  }).catch(function(error) {
       console.log(error);
     })
