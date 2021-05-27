@@ -58,7 +58,7 @@
                           <span>Dashboard</span>
                       </a>
           </li>
-          <li class="sub-menu">
+          <!-- <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_document_alt"></i>
                           <span>Documentation</span>
@@ -68,7 +68,7 @@
               <li><a class="" href="form_component.html">COVID</a></li>
               <li><a class="" href="form_validation.html">Schools</a></li>
             </ul>
-          </li>
+          </li> -->
 
           <li class="sub-menu">
             <a href="javascript:;" class="">
@@ -103,7 +103,7 @@
                 
               </div>
               <div class="panel-body-map">
-                <div id="map" style="height:380px;"></div>
+                <div id='includedContent'></div>
               </div>
 
             </div>
@@ -116,23 +116,23 @@
                 <!-- Graph -->
                 <div><span id="todayspark1" class="spark"></span></div>
                 <!-- Text -->
-                <div class="datas-text">Total closed schools</div>
+                <div class="datas-text"></div>
               </li>
               <li>
                 <div><span id="todayspark2" class="spark"></span></div>
-                <div class="datas-text">xx Total COVID Cases</div>
+                <div class="datas-text"></div>
               </li>
               <li>
                 <div><span id="todayspark3" class="spark"></span></div>
-                <div class="datas-text">xx Deaths</div>
+                <div class="datas-text"></div>
               </li>
               <li>
                 <div><span id="todayspark4" class="spark"></span></div>
-                <div class="datas-text">Re-opened schools</div>
+                <div class="datas-text"></div>
               </li>
               <li>
                 <div><span id="todayspark5" class="spark"></span></div>
-                <div class="datas-text">12,0000,000 applied vaccines</div>
+                <div class="datas-text"></div>
               </li>
             </ul>
           </div>
@@ -330,10 +330,19 @@
   <script src="../static/js/jquery.scrollTo.min.js"></script>
   <script src="../static/js/jquery.nicescroll.js" type="text/javascript"></script>
   <!-- charts scripts -->
+<<<<<<< Updated upstream
   <script src="../assets/jquery-knob/js/jquery.knob.js"></script>
   <script src="../static/js/jquery.sparkline.js" type="text/javascript"></script>
   <script src="../assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
   <script src="../static/js/owl.carousel.js"></script>
+=======
+  <!-- <script src="../assets/jquery-knob/js/jquery.knob.js"></script> -->
+  <!-- <script src="../static/js/jquery.sparkline.js" type="text/javascript"></script> -->
+  <!-- <script src="../assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script> -->
+  <!-- <script src="../static/js/owl.carousel.js"></script> -->
+  <script src="../static/js/barplot_copy.js"></script>
+  <!-- <script src="../static/js/barplot.js"></script> -->
+>>>>>>> Stashed changes
     <!-- custom select -->
     <script src="../static/js/jquery.customSelect.min.js"></script>
     <script src="../assets/chart-master/Chart.js"></script>
@@ -352,6 +361,7 @@
     <script src="../static/js/morris.min.js"></script>
     <script src="../static/js/sparklines.js"></script>
     <script src="../static/js/charts.js"></script>
+<<<<<<< Updated upstream
     <script src="../static/js/jquery.slimscroll.min.js"></script>
     <script>
       //knob
@@ -397,6 +407,13 @@
           }
         });
       });
+=======
+    <!-- mapa html -->
+  <script> 
+    $(function(){
+      $("#includedContent").load("../static/js/map.html"); 
+    });
+>>>>>>> Stashed changes
     </script>
 
 </body>
