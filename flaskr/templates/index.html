@@ -98,7 +98,7 @@
                 <h2><strong>MAP</strong></h2>
               </div>
               <div class="panel-body-map">
-                <div id="map" style="height:380px;"></div>
+                <div id='includedContent'></div>
               </div>
             </div>
           </div>
@@ -108,25 +108,25 @@
               <!-- List #1 -->
               <li>
                 <!-- Graph -->
-                <div><span id="todayspark1" class="spark"></span></div>
+                <div><span id="" class="spark"></span></div>
                 <!-- Text -->
-                <div class="datas-text">Total closed schools</div>
+                <div class="datas-text"></div>
               </li>
               <li>
-                <div><span id="todayspark2" class="spark"></span></div>
-                <div class="datas-text">xx Total COVID Cases</div>
+                <div><span id="" class="spark"></span></div>
+                <div class="datas-text"></div>
               </li>
               <li>
-                <div><span id="todayspark3" class="spark"></span></div>
-                <div class="datas-text">xx Deaths</div>
+                <div><span id="" class="spark"></span></div>
+                <div class="datas-text"></div>
               </li>
               <li>
-                <div><span id="todayspark4" class="spark"></span></div>
-                <div class="datas-text">Re-opened schools</div>
+                <div><span id="" class="spark"></span></div>
+                <div class="datas-text"></div>
               </li>
               <li>
-                <div><span id="todayspark5" class="spark"></span></div>
-                <div class="datas-text">12,0000,000 applied vaccines</div>
+                <div><span id="" class="spark"></span></div>
+                <div class="datas-text"></div>
               </li>
             </ul>
           </div>
@@ -205,6 +205,14 @@
     <script src="../static/js/scripts.js"></script>
     <!-- custom script for this page-->
     <script src="../static/js/charts.js"></script>
+
+    <!-- mapa html -->
+  <script> 
+    $(function(){
+      $("#includedContent").load("../static/js/map.html"); 
+    });
+    </script>
+
 
 </body>
 
