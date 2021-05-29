@@ -1,5 +1,4 @@
-
-    // var svg = d3.select("#panel-body-map")
+// var svg = d3.select("#panel-body-map")
     //     .append("svg");
     // d3 = require("d3@6")
     let svgWidth = 850;
@@ -15,7 +14,7 @@
     let width = svgWidth - margin.left - margin.right;
     let height = svgHeight - margin.top - margin.bottom;
 
-    let svg = d3git 
+    let svg = d3 
       .select("#race-chart")
       .append("svg")
       .attr("width", svgWidth)
@@ -495,5 +494,3 @@
   }).catch(function(error) {
       console.log(error);
     })
-
-  
