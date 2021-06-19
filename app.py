@@ -33,6 +33,11 @@ def index():
     """Return the dashboard homepage"""
     return render_template('index.html')
 
+@app.route('/documentation')
+def documentation():
+    """Return the dashboard homepage"""
+    return render_template('documentation.html')
+
 
 @app.route('/json-data')
 def jsondata():
