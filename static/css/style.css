@@ -9903,3 +9903,11 @@ span.customSelect.changed {
 #sendmessage.show, #errormessage.show, .show {
 	display:block;
 }
+
+
+/* IMAGES STYLING */
+#description-image {
+    width: 700px;
+    height: 400px;
+    text-align: center;
+}

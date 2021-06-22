@@ -1,11 +1,7 @@
-# Import Dependencies
+# DEPENDENCIES
 import pandas as pd
 import numpy as np
-
-# from config import PostgresK
 import psycopg2
-
-
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -13,9 +9,10 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
 
+# FLASK APP
 app = Flask(__name__)
 
-# Create the connection engine
+# CREATING CONNECTION WITH ENGINE
 connection_string = "ympsazqytxgdyd:"+"84f61aeda6880d7b357752a62d790ff878b9b80328a5e86c9436dae6fda1439f" + \
     "@ec2-54-152-185-191.compute-1.amazonaws.com:5432/d9pes28e80ohoe"
 
@@ -27,18 +24,19 @@ covid = data.Table('mergedcovid2', data.metadata,
 
 Session = sessionmaker(bind=data.engine)
 
-
+# HOME ROUTE
 @app.route('/')
 def index():
     """Return the dashboard homepage"""
     return render_template('index.html')
 
+# DOCUMENTATION ROUTE
 @app.route('/documentation')
 def documentation():
     """Return the dashboard homepage"""
     return render_template('documentation.html')
 
-
+# JSON DATA ROUTE
 @app.route('/json-data')
 def jsondata():
     session = Session()
