@@ -30,6 +30,11 @@ def index():
     """Return the dashboard homepage"""
     return render_template('index.html')
 
+@app.route('/openings')
+def openings():
+    """Return the dashboard homepage"""
+    return render_template('model.html')
+
 # DOCUMENTATION ROUTE
 @app.route('/documentation')
 def documentation():
@@ -41,71 +46,37 @@ def documentation():
 def jsondata():
     session = Session()
     cols1 = covid.columns
-    results = session.query(cols1.date_, cols1.iso_code, cols1.continent, 
-                            cols1.location, cols1.total_cases, cols1.school_closures, cols1.day_num).all()
-    # results = session.query(cols1.date_, cols1.iso_code, cols1.continent, 
-    #                         cols1.location, cols1.total_cases, cols1.school_closures, cols1.new_cases, cols1.total_deaths,
-    #                         cols1.new_deaths, cols1.total_cases_per_million, cols1.new_cases_per_million, 
-    #                         cols1.total_deaths_per_million, cols1.new_deaths_per_million, cols1.hosp_patients,
-    #                         cols1.hosp_patients_per_million, cols1.weekly_icu_admissions, cols1.weekly_icu_admissions_per_million,
-    #                         cols1.weekly_hosp_admissions, cols1.weekly_hosp_admissions_per_million, cols1.new_tests, 
-    #                         cols1.total_tests, cols1.total_tests_per_thousand, cols1.new_tests_per_thousand, cols1.positive_rate,
-    #                         cols1.total_vaccinations, cols1.people_vaccinated, cols1.people_fully_vaccinated, cols1.new_vaccinations,
-    #                         cols1.stringency_index, cols1.population, cols1.population_density, cols1.median_age, cols1.aged_65_older,
-    #                         cols1.aged_70_older, cols1.gdp_per_capita, cols1.extreme_poverty, cols1.cardiovasc_death_rate, 
-    #                         cols1.diabetes_prevalence, cols1.hospital_beds_per_thousand, cols1.life_expectancy, 
-    #                         cols1.human_development_index).all()
+    
+    results = session.query(cols1.iso_code, cols1.continent, cols1.location, cols1.date_, cols1.day_num, cols1.new_cases_per_million,\
+        cols1.new_deaths_per_million, cols1.hosp_patients_per_million, cols1.new_tests_per_thousand, cols1.positive_rate,\
+        cols1.people_vaccinated, cols1.population, cols1.population_density, cols1.median_age,\
+        cols1.gdp_per_capita, cols1.hospital_beds_per_thousand, cols1.life_expectancy, cols1.school_closures, cols1.total_cases).all()
+        
 
     results_dict = []
-    for date, iso, continent, location, total_cases, school_closures, daynum in results:
-    # for date, iso, continent, loc, cases, school, new_cases, total_deaths, new_deaths, cases_million, deaths_million,\
-    #     new_deaths_million, hosp_patients, hosp_patients_per_million, weekly_icu_admissions, weekly_icu_admissions_per_million, \
-    #     weekly_hosp_admissions, weekly_hosp_admissions_per_million, new_tests, total_test, total_tests_per_thousand,\
-    #     new_tests_per_thousand, positive_rate, total_vaccionations, people_vacc, people_full_vacc, new_vaccinations, \
-    #     stringency, population, pop_density, median_age, aged_65, aged_70, gdp, ext_poverty, cardio_death_rate, diabetes_prevalence,\
-    #     hosp_beds_per1000, life_expec, human_dev_index in results:
+    for iso, continent, location, date, daynum, newcasesmillion, newdeathsmillion, patientsmillion, newteststhousand, positiverate,\
+        peoplevaccinated, population, popdensity, medianage, gdp, bedsthousand, lifeexpec, school_closures, cases in results:
+   
          loop_dict = {}
-         loop_dict["date"] = date
          loop_dict["iso_code"] = iso
          loop_dict["continent"] = continent
          loop_dict["location"] = location
-         loop_dict["total_cases"] = total_cases
-         loop_dict["school_closures"] = school_closures
+         loop_dict["date"] = date
          loop_dict["day_count"] = daynum
-    #     loop_dict["new_cases"] =  new_cases
-    #     loop_dict["total_deaths"] =  total_deaths
-    #     loop_dict["new_deaths"] =  new_deaths
-    #     loop_dict["cases_million"] =  cases_million
-    #     loop_dict["deaths_million"] =  deaths_million
-    #     loop_dict["new_deaths_million"] =  new_deaths_million
-    #     loop_dict["hosp_patients"] =  hosp_patients
-    #     loop_dict["hosp_patients_per_million"] =  hosp_patients_per_million
-    #     loop_dict["weekly_icu_admissions"] =  weekly_icu_admissions
-    #     loop_dict["weekly_icu_admissions_per_million"] =  weekly_icu_admissions_per_million
-    #     loop_dict["weekly_hosp_admissions"] =  weekly_hosp_admissions
-    #     loop_dict["weekly_hosp_admissions_per_million"] =  weekly_hosp_admissions_per_million
-    #     loop_dict["new_tests"] =  new_tests
-    #     loop_dict["total_test"] =  total_test
-    #     loop_dict["total_tests_per_thousand"] =  total_tests_per_thousand
-    #     loop_dict["new_tests_per_thousand"] =  new_tests_per_thousand
-    #     loop_dict["positive_rate"] =  positive_rate
-    #     loop_dict["total_vaccionations"] =  total_vaccionations
-    #     loop_dict["people_vaccinated"] =  people_vacc
-    #     loop_dict["people_full_vaccinated"] =  people_full_vacc
-    #     loop_dict["new_vaccinations"] =  new_vaccinations
-    #     loop_dict["stringency_index"] =  stringency
-    #     loop_dict["population"] = population
-    #     loop_dict["pop_density"] =  pop_density
-    #     loop_dict["median_age"] = median_age
-    #     loop_dict["aged_65"] =  aged_65
-    #     loop_dict["aged_70"] =  aged_70
-    #     loop_dict["gdp"] = gdp
-    #     loop_dict["ext_poverty"] = ext_poverty
-    #     loop_dict["cardio_death_rate"] = cardio_death_rate
-    #     loop_dict["diabetes_prevalence"] = diabetes_prevalence
-    #     loop_dict["hosp_beds_per1000"] = hosp_beds_per1000
-    #     loop_dict["life_expec"] = life_expec
-    #     loop_dict["human_dev_index"] = human_dev_index
+         loop_dict["new_cases_per_million"] = newcasesmillion
+         loop_dict["new_deaths_per_million"] = newdeathsmillion
+         loop_dict["hospitalizations_per_million"]= patientsmillion
+         loop_dict["new_test_per_thousand"] = newteststhousand
+         loop_dict["positive_rate"] = positiverate
+         loop_dict["people_vaccinated"] = peoplevaccinated
+         loop_dict["population"] = population
+         loop_dict["pop_density"] = popdensity
+         loop_dict["medianage"] = medianage
+         loop_dict["gdp"] = gdp
+         loop_dict["hosp_beds_per_thousand"] = bedsthousand
+         loop_dict["life_expectancy"] = lifeexpec
+         loop_dict["school_closures"] = school_closures
+         loop_dict["total_cases"] = cases
 
          results_dict.append(loop_dict)
 
@@ -115,7 +86,3 @@ def jsondata():
 if __name__ == "__main__":
     app.run(debug=True)
 
-
-# "iso_code","continent","location","date","total_cases",
-# "total_vaccinations","population", "median_age",
-# "gdp_per_capita","hospital_beds_per_thousand", "school_closures"

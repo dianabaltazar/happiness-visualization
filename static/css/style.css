@@ -40,6 +40,10 @@ label{
 
 }
 
+#searchcountrybutton {
+    margin-top: 0.2em;
+}
+
 ul li {
 
     list-style: none;

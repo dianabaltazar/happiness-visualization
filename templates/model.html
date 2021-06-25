@@ -91,7 +91,7 @@
           <div class="col-lg-9 col-md-12">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h2><strong>MAP</strong></h2>
+                <h2><strong>EXPECTED RE-OPENING</strong></h2>
               </div>
               <div class="panel-body-map">
                 <div id='includedContent'></div>
@@ -99,35 +99,16 @@
             </div>
           </div>
           <div class="col-md-3">
-            <!-- LIST STARTS -->
-            <ul class="today-datas">
-              <!-- LIST #1 -->
-              <li>
-                <!-- GRAPH -->
-                <div><span id="" class="spark"></span></div>
-                <!-- TEXT -->
-                <div class="datas-text"></div>
-              </li>
-              <li>
-                <div><span id="" class="spark"></span></div>
-                <div class="datas-text"></div>
-              </li>
-              <li>
-                <div><span id="" class="spark"></span></div>
-                <div class="datas-text"></div>
-              </li>
-              <li>
-                <div><span id="" class="spark"></span></div>
-                <div class="datas-text"></div>
-              </li>
-              <li>
-                <div><span id="" class="spark"></span></div>
-                <div class="datas-text"></div>
-              </li>
-            </ul>
-            <!-- LIST ENDS -->
+            <div class="input-group">
+              <div class="form-outline">
+                <input type="search" id="form1" class="form-control" placeholder="Search for a Country"/>
+                <!-- <label class="form-label" for="form1">Search for a Country</label> -->
+              </div>
+              <button type="button" class="btn btn-primary" id="searchcountrybutton">
+                <i>Search</i>
+              </button>
+            </div>
           </div>
-        </div>
         <!-- OVERVIEW ENDS -->
 
         <!-- RACE CHART STARTS -->
@@ -135,8 +116,8 @@
           <div class="col-lg-9 col-md-12">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h2><strong>TOP 10 COUNTRIES WITH COVID CASES OVER TIME</strong></h2>
-                <select id="monthSelect" class="selector" aria-label="Default select example">
+                <h2><strong>SOMETHING</strong></h2>
+                <!-- <select id="monthSelect" class="selector" aria-label="Default select example">
                   <option selected>Choose a Month</option>
                   <option value="mar20">March 2020</option>
                   <option value="apr20">April 2020</option>
@@ -152,7 +133,7 @@
                   <option value="feb21">February 2021</option>
                   <option value="mar21">March 2021</option>
                   <option value="apr21">April 2021</option>
-                </select>
+                </select> -->
               </div>
               <div class="panel-body" id="race-chart">
               </div>
@@ -189,7 +170,7 @@
   <script src="../static/js/jquery.scrollTo.min.js"></script>
   <script src="../static/js/jquery.nicescroll.js" type="text/javascript"></script>
   <!-- CHARTS -->
-  <script src="../static/js/barplot_copy.js"></script>
+  <!-- <script src="../static/js/barplot_copy.js"></script> -->
   <!-- <script src="../static/js/barplot.js"></script> -->
   <!-- CUSTOM SELECT -->
   <script src="../static/js/jquery.customSelect.min.js"></script>
@@ -197,11 +178,11 @@
   <script src="../static/js/scripts.js"></script>
 
   <!-- MAP HTML -->
-  <script>
+  <!-- <script>
     $(function () {
       $("#includedContent").load("../static/js/map.html");
     });
-  </script>
+  </script> -->
 
 </body>
 
