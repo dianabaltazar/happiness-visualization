@@ -59,49 +59,50 @@ d3.json('/json-data').then(function (SchoolData, err) {
   feb21 = [];
   mar21 = [];
   apr21 = [];
-  apr22 = [];
+  may21 = [];
+  jun21 = [];
   months = [mar20, apr20, may20, jun20, jul20, aug20, sep20,
-    oct20, nov20, dec20, jan21, feb21, mar21];
+    oct20, nov20, dec20, jan21, feb21, mar21, apr21, may21, jun21];
 
   SchoolData.forEach(d => {
     monthly = {};
-    if (d.date === "3/10/2020") {
+    if (d.date === "03/10/2020") {
       monthly["date"] = d.date;
       monthly["country"] = d.location;
       monthly["schools"] = d.school_closures;
       monthly["cases"] = d.total_cases;
       mar20.push(monthly);
-    } else if (d.date === "4/10/2020") {
+    } else if (d.date === "04/10/2020") {
       monthly["date"] = d.date;
       monthly["country"] = d.location;
       monthly["schools"] = d.school_closures;
       monthly["cases"] = d.total_cases;
       apr20.push(monthly);
-    } else if (d.date === "5/10/2020") {
+    } else if (d.date === "05/10/2020") {
       monthly["date"] = d.date;
       monthly["country"] = d.location;
       monthly["schools"] = d.school_closures;
       monthly["cases"] = d.total_cases;
       may20.push(monthly);
-    } else if (d.date === "6/10/2020") {
+    } else if (d.date === "06/10/2020") {
       monthly["date"] = d.date;
       monthly["country"] = d.location;
       monthly["schools"] = d.school_closures;
       monthly["cases"] = d.total_cases;
       jun20.push(monthly);
-    } else if (d.date === "7/10/2020") {
+    } else if (d.date === "07/10/2020") {
       monthly["date"] = d.date;
       monthly["country"] = d.location;
       monthly["schools"] = d.school_closures;
       monthly["cases"] = d.total_cases;
       jul20.push(monthly);
-    } else if (d.date === "8/10/2020") {
+    } else if (d.date === "08/10/2020") {
       monthly["date"] = d.date;
       monthly["country"] = d.location;
       monthly["schools"] = d.school_closures;
       monthly["cases"] = d.total_cases;
       aug20.push(monthly);
-    } else if (d.date === "9/10/2020") {
+    } else if (d.date === "09/10/2020") {
       monthly["date"] = d.date;
       monthly["country"] = d.location;
       monthly["schools"] = d.school_closures;
@@ -125,30 +126,42 @@ d3.json('/json-data').then(function (SchoolData, err) {
       monthly["schools"] = d.school_closures;
       monthly["cases"] = d.total_cases;
       dec20.push(monthly);
-    } else if (d.date === "1/10/2021") {
+    } else if (d.date === "01/10/2021") {
       monthly["date"] = d.date;
       monthly["country"] = d.location;
       monthly["schools"] = d.school_closures;
       monthly["cases"] = d.total_cases;
       jan21.push(monthly);
-    } else if (d.date === "2/10/2021") {
+    } else if (d.date === "02/10/2021") {
       monthly["date"] = d.date;
       monthly["country"] = d.location;
       monthly["schools"] = d.school_closures;
       monthly["cases"] = d.total_cases;
       feb21.push(monthly);
-    } else if (d.date === "3/10/2021") {
+    } else if (d.date === "03/10/2021") {
       monthly["date"] = d.date;
       monthly["country"] = d.location;
       monthly["schools"] = d.school_closures;
       monthly["cases"] = d.total_cases;
       mar21.push(monthly);
-    } else if (d.date === "4/10/2021") {
+    } else if (d.date === "04/10/2021") {
       monthly["date"] = d.date;
       monthly["country"] = d.location;
       monthly["schools"] = d.school_closures;
       monthly["cases"] = d.total_cases;
       apr21.push(monthly);
+    } else if (d.date === "05/10/2021") {
+      monthly["date"] = d.date;
+      monthly["country"] = d.location;
+      monthly["schools"] = d.school_closures;
+      monthly["cases"] = d.total_cases;
+      may21.push(monthly);
+    }else if (d.date === "06/10/2021") {
+      monthly["date"] = d.date;
+      monthly["country"] = d.location;
+      monthly["schools"] = d.school_closures;
+      monthly["cases"] = d.total_cases;
+      jun21.push(monthly);
     };
 
   });
@@ -232,6 +245,16 @@ d3.json('/json-data').then(function (SchoolData, err) {
     return b - a;
   });
 
+  may21_values = may21.map(d => d.cases)
+  may21_values.sort(function (a, b) {
+    return b - a;
+  });
+
+  jun21_values = jun21.map(d => d.cases)
+  jun21_values.sort(function (a, b) {
+    return b - a;
+  });
+
   mar20Limit = mar20_values.slice(9, 10)
   apr20Limit = apr20_values.slice(9, 10)
   may20Limit = may20_values.slice(9, 10)
@@ -246,6 +269,8 @@ d3.json('/json-data').then(function (SchoolData, err) {
   feb21Limit = feb21_values.slice(9, 10)
   mar21Limit = mar21_values.slice(9, 10)
   apr21Limit = apr21_values.slice(9, 10)
+  may21Limit = may21_values.slice(9, 10)
+  jun21Limit = jun21_values.slice(9, 10)
 
   mar20Top = []
   mar20.forEach(d => {
@@ -414,6 +439,31 @@ d3.json('/json-data').then(function (SchoolData, err) {
       apr21Top.push(dict);
     }
   });
+
+  may21Top = []
+  may21.forEach(d => {
+    dict = {};
+    if (d.cases >= may21Limit) {
+      dict["date"] = d.date;
+      dict["country"] = d.country;
+      dict["schools"] = d.schools;
+      dict["cases"] = d.cases;
+      may21Top.push(dict);
+    }
+  });
+
+  jun21Top = []
+  jun21.forEach(d => {
+    dict = {};
+    if (d.cases >= jun21Limit) {
+      dict["date"] = d.date;
+      dict["country"] = d.country;
+      dict["schools"] = d.schools;
+      dict["cases"] = d.cases;
+      jun21Top.push(dict);
+    }
+  });
+
   selector = d3.select(".selector")
   selectedMonth = "";
   cases = SchoolData.map(d => d.total_cases)
@@ -449,6 +499,10 @@ d3.json('/json-data').then(function (SchoolData, err) {
       selectedMonth = mar21Top;
     } else if (selector.property("value") === "apr21") {
       selectedMonth = apr21Top;
+    } else if (selector.property("value") === "may21") {
+      selectedMonth = may21Top;
+    } else if (selector.property("value") === "jun21") {
+      selectedMonth = jun21Top;
     }
 
     // console.log(apr21.slice(0,10));
